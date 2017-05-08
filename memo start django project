@@ -1,0 +1,19 @@
+how to start a project django on linux
+- check python 3.4.3 min
+  $ python3 --version
+      python 3.4.3
+  ohterwise: $ sudo apt-get install python 3.4
+- create virtual environement
+  create the repository of the project (mkdir)
+  $ python3 -m venv myvenv
+    if ubuntu: use virtualenv
+      $ sudo apt-get install python-virtualenv
+      $ virtualenv --python=python3.4 myvenv
+- open the virtual envi "myvenv"
+  $ source myvenv/bin/activate
+  or $ . myvenv/bin/activate
+- install django
+  $ pip install django
+  or $ pip install django~=version
+-
+      
