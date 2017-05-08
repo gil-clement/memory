@@ -8,12 +8,15 @@ how to start a project django on linux
   $ python3 -m venv myvenv
     if ubuntu: use virtualenv
       $ sudo apt-get install python-virtualenv
-      $ virtualenv --python=python3.4 myvenv
+      $ virtualenv --python=python3.5 myvenv
 - open the virtual envi "myvenv"
   $ source myvenv/bin/activate
   or $ . myvenv/bin/activate
 - install django
   $ pip install django
   or $ pip install django~=version
--
+- $ django-admin startproject projectname
+  will create a new repository projectname
+- $ django-admin startproject projectname .
+  will create the project in the actual repository
       
