@@ -1,0 +1,74 @@
+tree of naked project:
+projectname/
+├── manage.py
+└── projectname
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+- edit settings.py
+  sett the time: TIME_ZONE = 'xxx'
+  add the directory for the futue static file like .css
+    STATIC_URL = '/static/'
+  add the line: STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    will let url automatic to root static directory
+- run server for local testing 
+  $ python manage.py runserver
+    load the page localhost:8000
+  "it worked!"
+- create an application
+  manage.py startapp newapp
+  neww tree:
+  Projectname
+├── projectname
+|       __init__.py
+|       settings.py
+|       urls.py
+|       wsgi.py
+├── manage.py
+└── newapp
+    ├── migrations
+    |       __init__.py
+    ├── __init__.py
+    ├── admin.py
+    ├── models.py
+    ├── tests.py
+    └── views.py
+- add 'newapp' in the "INSTALLED_APPS" of projectname/settings.py
+- create the models:
+    example: 
+from django.db import models
+from django.utils import timezone
+
+
+class Post(models.Model):
+    author = models.ForeignKey('auth.User')
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(
+            default=timezone.now)
+    published_date = models.DateTimeField(
+            blank=True, null=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+ - create the db for the model created: 
+      $ python manage.py makemigrations newapp
+      $ python manage.py migrate newapp
+ - integrate the model in the admin interface
+      edit newapp/admin.py :
+      
+      from django.contrib import admin
+      from .models import Post
+
+      admin.site.register(Post)
+ - create the super user for the admin interface
+      $ python manage.py createsuper
+        ex: username admin
+        email admin@admin.com
+ 
+      
