@@ -1,0 +1,34 @@
+How Django works:
+
+the URL request from the user is handle in projectname/urls.py
+    
+    from django.conf.urls import include, url
+    from django.contrib import admin
+
+    urlpatterns = [
+    url(r'^admin/', admin.site.urls),  
+    url(r'^newapp/', include('newapp.urls')),
+
+  We can see that the url site.com/admin is redirected to the module admin of django
+  the second line will link the url site.com/newapp/.. + etc. to the a specific url administration file located in newapp/urls.py
+  
+  So in the file newapp/urls.y : 
+      
+        from django.conf.urls import url
+        from . import views     #we import the file views located in the same directory
+        
+        urlpatterns = [
+                        url(r'^$', views.home, name='home_url_name'),
+                         ]
+this asign the URL site.com/newapp/ to the view home. The url has a name :"home"
+
+
+So the file view is 
+
+            from django.shortcuts import render
+            
+  
+  
+  
+  
+  
