@@ -2,15 +2,16 @@ How Django works:
 
 the URL request from the user is handle in projectname/urls.py
     
+
     from django.conf.urls import include, url
     from django.contrib import admin
 
     urlpatterns = [
     url(r'^admin/', admin.site.urls),  
     url(r'^newapp/', include('newapp.urls')),
-
   We can see that the url site.com/admin is redirected to the module admin of django
   the second line will link the url site.com/newapp/.. + etc. to the a specific url administration file located in newapp/urls.py
+    this the manner clean to do it
   
   So in the file newapp/urls.y : 
       
@@ -20,13 +21,51 @@ the URL request from the user is handle in projectname/urls.py
         urlpatterns = [
                         url(r'^$', views.home, name='home_url_name'),
                          ]
-this asign the URL site.com/newapp/ to the view home. The url has a name :"home"
+this asign the URL site.com/newapp/ to the view named home. The url has a name :"home"
 
 
 So the file view is 
 
             from django.shortcuts import render
-            
+            def home(request):
+            return render(request, 'newapp/home.html', {})
+     this file will load the file home.html 
+     
+     
+     What will be more usefull in the file  views:
+     
+            from django.shortcuts import render
+            from django.utils import timezone
+            from .models import Post
+
+            def variable_list'posts': posts}(request):
+            variable = ClassModelInNewapp.objects.filter('filter fonction')
+            return render(request, 'blog/post_list.html', {'variable': variable})
+     this will send variable from our models into the html construction
+     
+     
+     bad idea:
+     
+     urlpatterns = patterns('',
+url(r'^accueil/$', 'blog.views.home'),
+url(r'^truc/$', 'blog.views.truc'),
+url(r'^chose/$', 'blog.views.chose'),
+url(r'^machin/$', 'blog.views.machin'),
+url(r'^foo/$', 'blog.views.foo'),
+url(r'^bar/$', 'blog.views.bar'),
+)
+
+good idea:
+
+urlpatterns = patterns('blog.views',
+url(r'^accueil/$', 'home'),
+url(r'^truc/$', 'truc'),
+url(r'^chose/$', 'chose'),
+url(r'^machin/$', 'machin'),
+url(r'^foo/$', 'foo'),
+url(r'^bar/$', 'bar'),
+)
+     
   
   
   
