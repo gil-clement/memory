@@ -14,8 +14,9 @@ install:
 
 - create the depot on the computer
   in the depositery of the project:
-    $ git init git config --global user.name "Votre nom"
-    $  git config --global user.email you@exemple.com
+    $ git init 
+    $ git config --global user.name "Votre nom"
+    $ git config --global user.email you@exemple.com
   create a file ".gitignore" :
   
       *.pyc
