@@ -42,7 +42,7 @@ install:
   - create the clone on the server
   $ git clone "URL"
   - create the virtual environement 
-     $ virtualenv --python=python3.4 myvenv
+     $ virtualenv --python=python3.5 myvenv
   AND ACTIVATE
   and instal django
   and migrate the db
